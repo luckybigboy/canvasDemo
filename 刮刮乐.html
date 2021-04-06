@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body onload="draw()">
+    <img width="195" height="348" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2560500809,2878883670&fm=26&gp=0.jpg" alt="">
+    <canvas id='myCanvas' width="210" height="348"></canvas>
+    <script>
+        function draw() {
+            let myCanvas = document.getElementById('myCanvas')
+            console.log(myCanvas.width, myCanvas.height)
+            if (!myCanvas.getContext) return
+            let ctx = myCanvas.getContext('2d')
+            ctx.beginPath()
+            ctx.fillStyle = 'gray'
+            ctx.fillRect(0, 0, myCanvas.width, myCanvas.height)
+
+            ctx.globalCompositeOperation = 'destination-out'
+            ctx.lineWidth = 40
+            ctx.lineCap = 'round'
+
+            myCanvas.onmousedown = function (e) {
+                let ev = e || window.event
+                let x = ev.clientX, y = ev.clientY
+                ctx.moveTo(x, y)
+                myCanvas.onmousemove = function (e) {
+                    let ev = e || window.event
+                    let x = ev.clientX, y = ev.clientY
+                    ctx.lineTo(x, y)
+                    ctx.stroke()
+                }
+                myCanvas.onmouseup = function() {
+                    myCanvas.onmousemove = null
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

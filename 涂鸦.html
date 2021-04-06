@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="draw()">
+    <canvas id='myCanvas' width="300" height="300" style="border: 1px solid skyblue;"></canvas>
+    <script>
+        function draw() {
+            let myCanvas = document.getElementById('myCanvas')
+            if (!myCanvas.getContext) return
+            let ctx = myCanvas.getContext('2d')
+
+            // myCanvas.onmousedown = function (e) {
+            //     var ev = e || window.event
+            //     var x = ev.clientX - myCanvas.offsetLeft
+            //     var y = ev.clientY - myCanvas.offsetTop
+
+            //     ctx.strokeStyle = 'red'
+            //     ctx.lineWidth = 5
+
+            //     ctx.beginPath()
+            //     ctx.moveTo(x, y)
+
+            //     myCanvas.onmousemove = function (e) {
+            //         var ev = e || window.event
+            //         var x = ev.clientX - myCanvas.offsetLeft
+            //         var y = ev.clientY - myCanvas.offsetTop
+
+            //         ctx.lineTo(x, y)
+            //         ctx.stroke()
+            //     }
+            //     myCanvas.onmouseup = function() {
+            //         myCanvas.onmousemove = null
+            //     }
+            // }
+            myCanvas.onmousedown = function (e) {
+                let ev = e || window.event
+                let x = ev.clientX - myCanvas.offsetLeft
+                let y = ev.clientY - myCanvas.offsetTop
+
+                ctx.strokeStyle = 'red'
+                ctx.lineWidth = 5
+
+                ctx.beginPath()
+                ctx.moveTo(x, y)
+
+                myCanvas.onmousemove = function (e) {
+                    let ev = e || window.event
+                    let x = ev.clientX - myCanvas.offsetLeft
+                    let y = ev.clientY - myCanvas.offsetTop
+
+                    ctx.lineTo(x, y)
+                    ctx.stroke()
+                }
+
+                myCanvas.onmouseup = function(e) {
+                    myCanvas.onmousemove = null
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

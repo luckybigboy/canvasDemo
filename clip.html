@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="draw()">
+    <canvas id='myCanvas' width="300" height="300" style="border: 1px solid skyblue;"></canvas>
+    <script>
+        function draw() {
+            let myCanvas = document.getElementById('myCanvas')
+            if (!myCanvas.getContext) return
+            let ctx = myCanvas.getContext('2d')
+
+            let img = new Image()
+            img.src = 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.17qq.com%2Fimg_biaoqing%2F21671659.jpeg&refer=http%3A%2F%2Fwww.17qq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1620313761&t=8ec4858b93ebe45cd04c737307de978e'
+            img.onload = function() {
+                ctx.beginPath()
+                ctx.arc(150, 150, 100, 0, Math.PI*2)
+                // ctx.strokeStyle = 'orange'
+                ctx.stroke()
+                // ctx.fill()
+                ctx.clip()
+
+                ctx.drawImage(this,50,50,200,200)
+            }
+        }
+        </script>
+</body>
+</html>

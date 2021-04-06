@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字阴影</title>
+</head>
+<body onload="draw()">
+    <canvas id='myCanvas' width="300" height="300" style="border: 1px solid skyblue;"></canvas>
+    <script>
+        function draw() {
+            let myCanvas = document.getElementById('myCanvas')
+            if (!myCanvas.getContext) return
+            let ctx = myCanvas.getContext('2d')
+            
+            // let lingrad = ctx.createLinearGradient(100, 200, 500, 200)
+            // lingrad.addColorStop(0.5, '#cc6677')
+            // lingrad.addColorStop(1, '#000')
+
+            // ctx.shadowColor = 'orange'
+            // ctx.shadowBlur = 10
+            // ctx.shadowOffsetX = 20
+            // ctx.shadowOffsetY = 20
+
+            ctx.font = 'bold italic 100px arial'
+            // font-weight  font-style font-size font-family
+
+            ctx.fillStyle = 'red'
+            ctx.fillText('静', 100, 200)
+        }
+    </script>    
+</body>
+</html>

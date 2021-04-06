@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="draw()">
+    <canvas id='myCanvas' width="300" height="300" style="border: 1px solid skyblue;"></canvas>
+    <script>
+        function draw() {
+            let myCanvas = document.getElementById('myCanvas')
+            if (!myCanvas.getContext) return
+            let ctx = myCanvas.getContext('2d')
+            ctx.strokeStyle = 'orange'
+            ctx.lineWidth = 10
+            // ctx.arc(100, 100, 50, 0, Math.PI)
+            // ctx.arc(100, 100, 50, 0, -Math.PI/2)
+            ctx.arc(100, 100, 50, 0, -Math.PI/2, true)
+            ctx.stroke()
+        }
+    </script>
+</body>
+
+</html>
