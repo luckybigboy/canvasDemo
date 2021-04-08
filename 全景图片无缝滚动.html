@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="draw()">
+    <canvas id='myCanvas' width="700" height="350" style="border: 1px solid red;"></canvas>
+    <script>
+        function draw() {
+            let myCanvas = document.getElementById('myCanvas')
+            if(!myCanvas.getContext) return
+
+            let ctx = myCanvas.getContext('2d')
+            let x = 0
+            function animationImg() {
+                ctx.save()
+                ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
+                ctx.translate(-x, 0)
+                ctx.drawImage(img, 0, 0)
+                ctx.drawImage(img, myCanvas.width, 0)
+                x ++
+                if(x >= myCanvas.width) {
+                    x = 0
+                }
+                ctx.restore()
+                window.requestAnimationFrame(animationImg)
+            }
+            let img = new Image()
+            img.onload = function() {
+                animationImg()
+            }
+            img.src = 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ff.expoon.com%2Fnews%2F2016%2F07%2F22%2F933979.jpg&refer=http%3A%2F%2Ff.expoon.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1620489546&t=361e3221bd834e1f642bd402eb7cd448'
+        }
+    </script>
+</body>
+</html>
