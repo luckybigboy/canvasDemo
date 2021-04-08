@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="draw()">
+    <canvas id='myCanvas' width="500" height="300" style="border: 1px solid skyblue;"></canvas>
+    <script>
+        function draw() {
+            let myCanvas = document.getElementById('myCanvas')
+            if(!myCanvas.getContext) return
+
+            let ctx = myCanvas.getContext('2d')
+
+            function Ball(x, y, r, speedX, speedY, color) {
+                this.x = x
+                this.y = y
+                this.r = r
+                this.speedX = speedX
+                this.speedY = speedY
+                this.color = color
+
+                this.drawBall = function() {
+                    ctx.beginPath()
+                    ctx.fillStyle = this.color
+                    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2)
+                    ctx.fill()
+                }
+                this.move = function() {
+                    this.x += this.speedX
+                    if(this.x > myCanvas.width - this.r) {
+                        this.speedX *= -1
+                    } else if(this.x < this.r) {
+                        this.speedX *= -1
+                    }
+                    this.y += this.speedY
+                    if(this.y > myCanvas.height - this.r) {
+                        this.speedY *= -1
+                    } else if(this.y < this.r) {
+                        this.speedY *= -1
+                    }
+                }
+            }
+
+            let ball = new Ball(30, 30, 30, 2, 2, 'red')
+            function start() {
+                ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
+                ball.drawBall()
+                ball.move()
+                window.requestAnimationFrame(start)
+            }
+            start()
+        }
+    </script>
+</body>
+</html>
